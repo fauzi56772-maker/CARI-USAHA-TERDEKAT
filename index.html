@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peta UMKM & Warung Lokal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAVBAR ===================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">
+        <span class="logo-icon">🗺️</span>
+        <span class="logo-text">Peta UMKM</span>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#beranda" class="nav-link active">Beranda</a>
+        <a href="#peta" class="nav-link">Peta Lokasi</a>
+        <a href="#daftar" class="nav-link">Daftar UMKM</a>
+        <a href="#kategori-section" class="nav-link">Kategori</a>
+        <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
+        <a href="#tambah" class="nav-link btn-daftar">+ Daftarkan Usaha</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO / PEMBUKA ===================== -->
+  <section class="hero" id="beranda">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="hero-label">Website komunitas lokal</p>
+        <h1>Temukan UMKM dan Warung di Sekitar Anda</h1>
+        <p class="hero-desc">
+          Website ini membantu Anda menemukan berbagai usaha lokal seperti warung makan,
+          toko kelontong, kedai kopi, jasa laundry, bengkel, dan UMKM lainnya melalui
+          peta lokasi yang mudah digunakan.
+        </p>
+        <div class="hero-buttons">
+          <a href="#peta" class="btn btn-primary">🗺️ Lihat Peta</a>
+          <a href="#daftar" class="btn btn-secondary">📋 Lihat Daftar UMKM</a>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <div class="hero-card-preview">
+          <div class="preview-dot green"></div>
+          <div class="preview-dot yellow"></div>
+          <div class="preview-dot red"></div>
+          <div class="preview-map-placeholder">
+            <span>📍</span>
+            <p>Warung Bu Siti · 0.3 km</p>
+            <p>Kedai Kopi Pak Haji · 0.7 km</p>
+            <p>Toko Kelontong Maju · 1.1 km</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STATISTIK ===================== -->
+  <section class="statistik">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <span class="stat-number" data-target="48">0</span>
+        <span class="stat-label">Total UMKM</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="19">0</span>
+        <span class="stat-label">Warung Makan</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="8">0</span>
+        <span class="stat-label">Kedai Kopi</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="12">0</span>
+        <span class="stat-label">Toko Kelontong</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PENCARIAN & FILTER ===================== -->
+  <section class="pencarian-section" id="daftar">
+    <div class="container">
+      <div class="section-header">
+        <h2>Daftar UMKM & Warung</h2>
+        <p>Temukan usaha yang kamu cari dengan mudah</p>
+      </div>
+
+      <!-- Kotak Pencarian -->
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari nama usaha, pemilik, kategori, atau lokasi..."
+          autocomplete="off"
+        />
+        <button id="btnLokasiku" class="btn-lokasi" title="Gunakan lokasi saya">
+          📍 Lokasi Saya
+        </button>
+      </div>
+
+      <!-- Filter Kategori -->
+      <div class="filter-kategori" id="kategori-section">
+        <button class="filter-btn active" data-kategori="semua">Semua</button>
+        <button class="filter-btn" data-kategori="Warung Makan">🍽️ Warung Makan</button>
+        <button class="filter-btn" data-kategori="Kedai Kopi">☕ Kedai Kopi</button>
+        <button class="filter-btn" data-kategori="Toko Kelontong">🛒 Toko Kelontong</button>
+        <button class="filter-btn" data-kategori="Jajanan">🧁 Jajanan</button>
+        <button class="filter-btn" data-kategori="Bengkel">🔧 Bengkel</button>
+        <button class="filter-btn" data-kategori="Laundry">👕 Laundry</button>
+        <button class="filter-btn" data-kategori="Kerajinan">🎨 Kerajinan</button>
+        <button class="filter-btn" data-kategori="Lainnya">📦 Lainnya</button>
+      </div>
+
+      <!-- Info hasil pencarian -->
+      <p class="hasil-info" id="hasilInfo">Menampilkan semua usaha</p>
+
+      <!-- Grid Kartu UMKM -->
+      <div class="umkm-grid" id="umkmGrid">
+        <!-- Kartu diisi oleh JavaScript -->
+      </div>
+
+      <!-- Pesan kosong -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <span>🔎</span>
+        <p>Tidak ada usaha yang cocok dengan pencarian kamu.</p>
+        <small>Coba kata kunci lain atau pilih kategori berbeda.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PETA LOKASI ===================== -->
+  <section class="peta-section" id="peta">
+    <div class="container">
+      <div class="section-header">
+        <h2>Peta Lokasi UMKM</h2>
+        <p>Temukan lokasi usaha terdekat dari posisi kamu sekarang</p>
+      </div>
+      <div class="peta-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.54649039375!2d106.7271526!3d-6.1800848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Indonesia!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Peta Lokasi UMKM"
+        ></iframe>
+      </div>
+      <p class="peta-note">
+        💡 Klik tombol <strong>"Lihat Lokasi"</strong> pada kartu usaha untuk membuka petunjuk arah langsung ke Google Maps.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== MODAL DETAIL USAHA ===================== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" id="modalBox">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Diisi JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAMBAH UMKM ===================== -->
+  <section class="tambah-section" id="tambah">
+    <div class="container">
+      <div class="section-header">
+        <h2>Daftarkan Usaha Anda</h2>
+        <p>Gratis, cepat, dan langsung tampil di direktori kami</p>
+      </div>
+      <div class="form-wrapper">
+        <form id="formTambah" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="namaUsaha">Nama Usaha <span class="required">*</span></label>
+              <input type="text" id="namaUsaha" placeholder="Contoh: Warung Bu Siti" />
+              <span class="error-msg" id="errNamaUsaha"></span>
+            </div>
+            <div class="form-group">
+              <label for="namaPemilik">Nama Pemilik <span class="required">*</span></label>
+              <input type="text" id="namaPemilik" placeholder="Contoh: Siti Rahayu" />
+              <span class="error-msg" id="errNamaPemilik"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="kategoriUsaha">Kategori <span class="required">*</span></label>
+              <select id="kategoriUsaha">
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Warung Makan">Warung Makan</option>
+                <option value="Kedai Kopi">Kedai Kopi</option>
+                <option value="Toko Kelontong">Toko Kelontong</option>
+                <option value="Jajanan">Jajanan</option>
+                <option value="Bengkel">Bengkel</option>
+                <option value="Laundry">Laundry</option>
+                <option value="Kerajinan">Kerajinan</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+              <span class="error-msg" id="errKategori"></span>
+            </div>
+            <div class="form-group">
+              <label for="jamOp">Jam Operasional <span class="required">*</span></label>
+              <input type="text" id="jamOp" placeholder="Contoh: 07.00–21.00" />
+              <span class="error-msg" id="errJamOp"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="alamat">Alamat <span class="required">*</span></label>
+            <input type="text" id="alamat" placeholder="Contoh: Jl. Melati No. 15, RT 03/RW 02" />
+            <span class="error-msg" id="errAlamat"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="whatsapp">Nomor WhatsApp <span class="required">*</span></label>
+              <input type="tel" id="whatsapp" placeholder="Contoh: 08123456789" />
+              <span class="error-msg" id="errWhatsapp"></span>
+            </div>
+            <div class="form-group">
+              <label for="linkMaps">Link Google Maps</label>
+              <input type="url" id="linkMaps" placeholder="https://maps.google.com/..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="deskripsi">Deskripsi Usaha <span class="required">*</span></label>
+            <textarea id="deskripsi" rows="4" placeholder="Ceritakan sedikit tentang usaha Anda..."></textarea>
+            <span class="error-msg" id="errDeskripsi"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="fotoUsaha">Foto Usaha</label>
+            <input type="file" id="fotoUsaha" accept="image/*" />
+            <small>Format: JPG, PNG. Maks. 2MB.</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit">
+            Kirim & Daftarkan Usaha
+          </button>
+        </form>
+
+        <!-- Pesan sukses -->
+        <div class="sukses-msg" id="suksesMsg" style="display:none;">
+          <span>✅</span>
+          <h3>Terima kasih sudah mendaftar!</h3>
+          <p>Data usaha Anda sudah kami terima dan akan segera ditampilkan setelah verifikasi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TENTANG ===================== -->
+  <section class="tentang-section" id="tentang">
+    <div class="container tentang-inner">
+      <div class="tentang-text">
+        <h2>Tentang Website Ini</h2>
+        <p>
+          <strong>Peta UMKM & Warung Lokal</strong> dibuat dengan satu tujuan sederhana:
+          membantu usaha kecil lebih mudah ditemukan oleh warga sekitar dan wisatawan.
+        </p>
+        <p>
+          Banyak warung, toko, dan UMKM yang sudah lama beroperasi namun belum punya
+          kehadiran digital sama sekali. Padahal, banyak orang yang kesulitan menemukan
+          usaha tersebut hanya karena tidak tahu di mana lokasinya.
+        </p>
+        <p>
+          Website ini bukan milik satu perusahaan besar — ini adalah inisiatif komunitas
+          yang bisa digunakan siapa saja, gratis, tanpa perlu daftar akun.
+        </p>
+        <div class="tentang-poin">
+          <div class="poin-item">✅ Gratis untuk semua pelaku UMKM</div>
+          <div class="poin-item">✅ Mudah ditemukan lewat pencarian</div>
+          <div class="poin-item">✅ Langsung terhubung ke WhatsApp</div>
+          <div class="poin-item">✅ Petunjuk arah via Google Maps</div>
+        </div>
+      </div>
+      <div class="tentang-visual">
+        <div class="visual-box">
+          <span class="visual-emoji">🏪</span>
+          <p>Dukung usaha lokal, perkuat ekonomi komunitas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== KONTAK ===================== -->
+  <section class="kontak-section" id="kontak">
+    <div class="container kontak-inner">
+      <div class="kontak-info">
+        <h2>Hubungi Kami</h2>
+        <p>Ada pertanyaan, saran, atau ingin melaporkan data yang tidak tepat? Silakan hubungi kami.</p>
+        <div class="kontak-detail">
+          <p>📧 <a href="mailto:admin@petaumkm.id">admin@petaumkm.id</a></p>
+          <p>💬 <a href="https://wa.me/6281200000000" target="_blank">WhatsApp Admin</a></p>
+          <p>🕐 Senin – Sabtu, 08.00 – 17.00 WIB</p>
+        </div>
+      </div>
+      <div class="kontak-form">
+        <form id="formKontak" novalidate>
+          <div class="form-group">
+            <label for="kontakNama">Nama <span class="required">*</span></label>
+            <input type="text" id="kontakNama" placeholder="Nama Anda" />
+            <span class="error-msg" id="errKontakNama"></span>
+          </div>
+          <div class="form-group">
+            <label for="kontakEmail">Email <span class="required">*</span></label>
+            <input type="email" id="kontakEmail" placeholder="email@contoh.com" />
+            <span class="error-msg" id="errKontakEmail"></span>
+          </div>
+          <div class="form-group">
+            <label for="kontakPesan">Pesan <span class="required">*</span></label>
+            <textarea id="kontakPesan" rows="4" placeholder="Tulis pesan Anda..."></textarea>
+            <span class="error-msg" id="errKontakPesan"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+        </form>
+        <div class="sukses-msg" id="suksesKontak" style="display:none;">
+          <span>✅</span>
+          <h3>Pesan terkirim!</h3>
+          <p>Kami akan segera membalas pesan Anda.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-icon">🗺️</span>
+        <span class="logo-text">Peta UMKM</span>
+        <p>Cari usaha terdekat, dukung usaha lokal.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Menu</h4>
+        <a href="#beranda">Beranda</a>
+        <a href="#peta">Peta Lokasi</a>
+        <a href="#daftar">Daftar UMKM</a>
+        <a href="#tambah">Daftarkan Usaha</a>
+      </div>
+      <div class="footer-links">
+        <h4>Informasi</h4>
+        <a href="#tentang">Tentang</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+      <div class="footer-kontak">
+        <h4>Kontak</h4>
+        <p>📧 admin@petaumkm.id</p>
+        <p>💬 WhatsApp Admin</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Peta UMKM & Warung Lokal. Dibuat untuk komunitas lokal.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
